@@ -20,7 +20,7 @@ public class ParallelSorter {
         System.out.println("Press ENTER");
         in.nextLine();
         long start = System.currentTimeMillis();
-        Arrays.sort(testArray);
+        Arrays.parallelSort(testArray);
         System.out.println(System.currentTimeMillis() - start);
     }
 }
