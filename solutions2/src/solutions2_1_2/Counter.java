@@ -1,4 +1,4 @@
-package solutions2_1_2.solutions2_1;
+package solutions2_1_2;
 
 public class Counter {
     // Critical resource 1

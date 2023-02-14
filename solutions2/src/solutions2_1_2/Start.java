@@ -1,4 +1,4 @@
-package solutions2_1_2.solutions2_1;
+package solutions2_1_2;
 
 public class Start {
     public static void main(String[] args) throws InterruptedException {
