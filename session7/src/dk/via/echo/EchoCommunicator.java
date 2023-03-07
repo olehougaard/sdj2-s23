@@ -12,8 +12,8 @@ public class EchoCommunicator implements Runnable {
 
     private void execute() throws IOException {
         try {
-            InputStream inputStream = socket.getInputStream();
             OutputStream outputStream = socket.getOutputStream();
+            InputStream inputStream = socket.getInputStream();
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader reader = new BufferedReader(inputStreamReader);
             PrintWriter writer = new PrintWriter(outputStream);
