@@ -6,7 +6,6 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 public class ViewHandler {
-    public static final String CALCULATOR = "calculator";
 
     private final Scene currentScene;
     private Stage primaryStage;
@@ -19,14 +18,11 @@ public class ViewHandler {
 
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        openView(CALCULATOR);
+        openView(ViewFactory.CALCULATOR);
     }
 
     public void openView(String id) {
-        Region root = switch(id) {
-            case CALCULATOR -> viewFactory.loadConvertView();
-            default -> throw new IllegalArgumentException("Unknown view: " + id);
-        };
+        Region root = viewFactory.load(id);
         currentScene.setRoot(root);
         if (root.getUserData() == null) {
             primaryStage.setTitle("");

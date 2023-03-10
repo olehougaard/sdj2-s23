@@ -8,6 +8,8 @@ import java.io.IOError;
 import java.io.IOException;
 
 public class ViewFactory {
+    public static final String CALCULATOR = "calculator";
+
     private final ViewHandler viewHandler;
     private final ViewModelFactory viewModelFactory;
     private CalculateViewController convertViewController;
@@ -32,5 +34,13 @@ public class ViewFactory {
         }
         convertViewController.reset();
         return convertViewController.getRoot();
+    }
+
+    public Region load(String id) {
+        Region root = switch(id) {
+            case CALCULATOR -> loadConvertView();
+            default -> throw new IllegalArgumentException("Unknown view: " + id);
+        };
+        return root;
     }
 }
