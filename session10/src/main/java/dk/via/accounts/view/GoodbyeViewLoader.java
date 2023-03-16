@@ -14,8 +14,9 @@ public class GoodbyeViewLoader extends ViewLoader {
         this.viewModelFactory = viewModelFactory;
     }
 
+
     @Override
-    protected ViewController createController(FXMLLoader loader, Region root) {
+    protected ViewController createViewController(FXMLLoader loader, Region root) {
         GoodbyeViewController viewController = loader.getController();
         viewController.init(viewHandler, viewModelFactory.getGoodbyeViewModel(), root);
         return viewController;

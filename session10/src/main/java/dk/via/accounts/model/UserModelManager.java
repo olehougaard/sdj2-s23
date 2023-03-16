@@ -12,9 +12,18 @@ public class UserModelManager implements UserModel {
     private final List<User> users;
     private final PropertyChangeSupport support;
 
-    public UserModelManager() {
+    private static UserModelManager instance;
+
+    private UserModelManager() {
         this.users = new ArrayList<>();
         this.support = new PropertyChangeSupport(this);
+    }
+
+    public static synchronized UserModelManager getInstance() {
+        if (instance == null) {
+            instance = new UserModelManager();
+        }
+        return instance;
     }
 
     public void addUser(String username, String password, String emailString) {

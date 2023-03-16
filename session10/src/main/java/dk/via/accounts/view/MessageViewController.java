@@ -29,11 +29,11 @@ public class MessageViewController implements ViewController {
         messageViewModel.bindLastUserInfo(lastUserInfo.textProperty());
 
         messageViewModel.addPropertyChangeListener(MessageViewModel.INPUT_USER, evt -> {
-            viewHandler.openView(ViewHandler.CREATE);
+            viewHandler.openView(ViewFactory.CREATE);
         });
 
         messageViewModel.addPropertyChangeListener(MessageViewModel.VIEW_GOODBYE, evt -> {
-            viewHandler.openView(ViewHandler.GOODBYE);
+            viewHandler.openView(ViewFactory.GOODBYE);
         });
     }
 

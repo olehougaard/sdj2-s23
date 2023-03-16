@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class Start extends Application {
     @Override
     public void start(Stage primaryStage) {
-        UserModel model = new UserModelManager();
+        UserModel model = UserModelManager.getInstance();
         ViewModelFactory viewModelFactory = new ViewModelFactory(model);
         ViewHandler viewHandler = new ViewHandler(viewModelFactory);
         viewHandler.start(primaryStage);

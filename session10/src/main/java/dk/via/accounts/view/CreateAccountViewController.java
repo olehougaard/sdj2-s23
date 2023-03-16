@@ -50,11 +50,11 @@ public class CreateAccountViewController implements ViewController {
         createAccountViewModel.bindError(errorLabel.textProperty());
 
         viewModel.addPropertyChangeListener(CreateAccountViewModel.VIEW_MESSAGE, evt -> {
-            viewHandler.openView(ViewHandler.MESSAGE);
+            viewHandler.openView(ViewFactory.MESSAGE);
         });
 
         viewModel.addPropertyChangeListener(CreateAccountViewModel.VIEW_GOODBYE, evt -> {
-            viewHandler.openView(ViewHandler.GOODBYE);
+            viewHandler.openView(ViewFactory.GOODBYE);
         });
     }
 
