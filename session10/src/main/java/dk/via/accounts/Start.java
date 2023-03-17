@@ -7,6 +7,13 @@ import dk.via.accounts.model.UserModelManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.net.InetAddress;
+import java.net.InterfaceAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
+import java.util.List;
+
 public class Start extends Application {
     @Override
     public void start(Stage primaryStage) {
@@ -17,6 +24,17 @@ public class Start extends Application {
     }
 
     public static void main(String[] args) {
+        try {
+            Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+            while(networkInterfaces.hasMoreElements()) {
+                NetworkInterface networkInterface = networkInterfaces.nextElement();
+                Enumeration<InetAddress> interfaceAddresses = networkInterface.getInetAddresses();
+                interfaceAddresses.asIterator().forEachRemaining(System.out::println);
+            }
+        } catch (SocketException e) {
+            throw new RuntimeException(e);
+        }
+
         launch();
     }
 }
