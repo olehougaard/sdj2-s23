@@ -9,9 +9,9 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class MathServer {
     public static void main(String[] args) throws IOException, AlreadyBoundException {
+        Registry registry = LocateRegistry.createRegistry(1099);
         RemoteCalculator calculator = new RemoteCalculator();
         Remote remote = UnicastRemoteObject.exportObject(calculator, 0);
-        Registry registry = LocateRegistry.createRegistry(1099);
         registry.bind("calculator", remote);
         System.out.println("Server running");
     }
