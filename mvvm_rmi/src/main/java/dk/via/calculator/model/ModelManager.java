@@ -1,6 +1,6 @@
 package dk.via.calculator.model;
 
-import dk.via.calculator.server.Calculator;
+import dk.via.calculator.shared.Calculator;
 
 import java.io.IOException;
 

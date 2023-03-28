@@ -1,6 +1,5 @@
-package dk.via.calculator.server;
+package dk.via.calculator.shared;
 
-import java.beans.PropertyChangeListener;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

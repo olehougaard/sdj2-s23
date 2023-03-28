@@ -12,4 +12,5 @@ module dk.via {
 
     exports dk.via.calculator;
     exports dk.via.calculator.server;
+    exports dk.via.calculator.shared;
 }

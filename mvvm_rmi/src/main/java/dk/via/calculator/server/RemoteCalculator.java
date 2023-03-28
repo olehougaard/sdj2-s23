@@ -1,5 +1,7 @@
 package dk.via.calculator.server;
 
+import dk.via.calculator.shared.Calculator;
+
 import java.rmi.RemoteException;
 
 public class RemoteCalculator implements Calculator {

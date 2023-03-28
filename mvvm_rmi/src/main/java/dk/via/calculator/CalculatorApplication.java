@@ -2,7 +2,7 @@ package dk.via.calculator;
 
 import dk.via.calculator.model.Model;
 import dk.via.calculator.model.ModelManager;
-import dk.via.calculator.server.Calculator;
+import dk.via.calculator.shared.Calculator;
 import dk.via.calculator.view.ViewHandler;
 import dk.via.calculator.viewmodel.ViewModelFactory;
 import javafx.application.Application;
