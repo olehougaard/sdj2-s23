@@ -24,4 +24,9 @@ public class Expression implements Serializable {
     public char getOperator() {
         return operator;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%f %c %f", operand1, operator, operand2);
+    }
 }
