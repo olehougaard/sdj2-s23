@@ -1,15 +1,16 @@
-package dk.via.exercise11_3.step1.server;
+package dk.via.exercise11_3.step2.server;
 
-import dk.via.exercise11_3.step1.RemoteMessageList;
+import dk.via.exercise11_3.step2.RemoteMessageList;
+import dk.via.exercise11_3.step2.RemoteSender;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class RmiServer implements RemoteMessageList {
+public class RmiCallbackServer implements RemoteMessageList {
     private final ArrayList<String> messageList;
 
 
-    public RmiServer() {
+    public RmiCallbackServer() {
         messageList = new ArrayList<>();
     }
 
@@ -22,8 +23,9 @@ public class RmiServer implements RemoteMessageList {
     }
 
     @Override
-    public void addMessage(String message) throws RemoteException {
+    public void addMessage(String message, RemoteSender callback) throws RemoteException {
         messageList.add(message);
         System.out.println(message);
+        callback.replyMessage("Thanks");
     }
 }
