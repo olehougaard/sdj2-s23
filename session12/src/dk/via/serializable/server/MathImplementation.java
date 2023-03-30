@@ -1,11 +1,11 @@
 package dk.via.serializable.server;
 
 import dk.via.serializable.shared.Expression;
-import dk.via.serializable.shared.MathClient;
+import dk.via.serializable.shared.Math;
 
 import java.rmi.RemoteException;
 
-public class MathImplementation implements MathClient {
+public class MathImplementation implements Math {
 
     @Override
     public double compute(Expression e) throws RemoteException {

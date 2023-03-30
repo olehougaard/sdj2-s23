@@ -13,5 +13,6 @@ public class StartClient {
         RemoteMessageList remoteMessageList = (RemoteMessageList) registry.lookup("remoteMessageList");
         RmiCallbackClient client = new RmiCallbackClient(remoteMessageList);
         client.send("Hello");
+        System.out.println(remoteMessageList.getLastMessage());
     }
 }

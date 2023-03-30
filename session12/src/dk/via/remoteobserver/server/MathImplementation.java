@@ -1,11 +1,11 @@
 package dk.via.remoteobserver.server;
 
 import dk.via.remoteobserver.shared.Expression;
-import dk.via.remoteobserver.shared.MathClient;
+import dk.via.remoteobserver.shared.Math;
 
 import java.rmi.RemoteException;
 
-public class MathImplementation implements MathClient {
+public class MathImplementation implements Math {
 
     @Override
     public double compute(Expression e) throws RemoteException {
