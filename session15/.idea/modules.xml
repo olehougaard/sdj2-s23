@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/database_adapter/database_adapter.iml" filepath="$PROJECT_DIR$/database_adapter/database_adapter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legacy_adapter/legacy_adapter.iml" filepath="$PROJECT_DIR$/legacy_adapter/legacy_adapter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/proxy/proxy.iml" filepath="$PROJECT_DIR$/proxy/proxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/session15.iml" filepath="$PROJECT_DIR$/session15.iml" />
+    </modules>
+  </component>
+</project>
