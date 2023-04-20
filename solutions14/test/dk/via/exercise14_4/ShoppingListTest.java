@@ -1,4 +1,4 @@
-package dk.via.shopping;
+package dk.via.exercise14_4;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
