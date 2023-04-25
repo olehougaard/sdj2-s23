@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="MyCollection-1.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../Java/MyCollection-1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="http://ict-engineering.dk/javadoc/MyCollection/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../Java/MyCollection-1.1.jar!/" />
+    </SOURCES>
+  </library>
+</component>
