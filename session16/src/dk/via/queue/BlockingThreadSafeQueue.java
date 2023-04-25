@@ -1,8 +1,12 @@
 package dk.via.queue;
 
-import java.util.*;
+import jdk.jshell.spi.ExecutionControl;
 
-public class BlockingThreadSafeQueue<E> implements Queue<E> {
+import java.util.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
+
+public class BlockingThreadSafeQueue<E> implements BlockingQueue<E> {
     private final ArrayDeque<E> elements;
     private final int capacity;
 
@@ -27,6 +31,27 @@ public class BlockingThreadSafeQueue<E> implements Queue<E> {
     }
 
     @Override
+    public int drainTo(Collection<? super E> c) {
+        return drainTo(c, capacity);
+    }
+
+    @Override
+    public int drainTo(Collection<? super E> c, int maxElements) {
+        if (c == this) throw new IllegalArgumentException();
+        ArrayList<E> drained = new ArrayList<>();
+        if (size() > maxElements) {
+            while(drained.size() < maxElements) {
+                drained.add(elements.remove());
+            }
+        } else {
+            drained.addAll(elements);
+            elements.clear();
+        }
+        c.addAll(drained);
+        return drained.size();
+    }
+
+    @Override
     public synchronized Iterator<E> iterator() {
         return elements.iterator();
     }
@@ -43,11 +68,13 @@ public class BlockingThreadSafeQueue<E> implements Queue<E> {
 
     @Override
     public synchronized boolean add(E e) {
+        if (size() >= capacity) throw new IllegalStateException();
         return elements.add(e);
     }
 
     @Override
     public synchronized boolean remove(Object o) {
+        if (isEmpty()) throw new IllegalStateException();
         return elements.remove(o);
     }
 
@@ -78,20 +105,25 @@ public class BlockingThreadSafeQueue<E> implements Queue<E> {
 
     @Override
     public synchronized boolean offer(E t) {
-        while (size() >= capacity) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        elements.add(t);
-        notifyAll();
-        return true;
+        if (size() >= capacity) return false;
+        return elements.add(t);
     }
 
     @Override
-    public synchronized E remove() {
+    public synchronized void put(E e) throws InterruptedException {
+        while (size() >= capacity) {
+            try {
+                wait();
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+        }
+        elements.add(e);
+        notifyAll();
+    }
+
+    @Override
+    public synchronized E take() throws InterruptedException {
         while(isEmpty()) {
             try {
                 wait();
@@ -102,6 +134,16 @@ public class BlockingThreadSafeQueue<E> implements Queue<E> {
         E head = elements.remove();
         notifyAll();
         return head;
+    }
+
+    @Override
+    public int remainingCapacity() {
+        return capacity;
+    }
+
+    @Override
+    public synchronized E remove() {
+        return elements.remove();
     }
 
     @Override
@@ -117,5 +159,17 @@ public class BlockingThreadSafeQueue<E> implements Queue<E> {
     @Override
     public synchronized E peek() {
         return elements.peek();
+    }
+
+    @Override
+    public boolean offer(E e, long timeout, TimeUnit unit) {
+        // Not implemented
+        return false;
+    }
+
+    @Override
+    public E poll(long timeout, TimeUnit unit) throws InterruptedException {
+        // Not implemented
+        return null;
     }
 }
