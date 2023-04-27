@@ -13,10 +13,9 @@ public class BallPitPainter implements Runnable {
         while(running) {
             ballPit.paintBallRed();
             try {
-                //noinspection BusyWait
-                Thread.sleep(0, 10_000);
+                Thread.sleep(0, 100);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
             running = ballPit.getGreenBalls() > 0;
         }

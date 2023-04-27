@@ -30,13 +30,14 @@ public class FairAccessManager implements AccessManager {
     public synchronized ReadOnlyBallPit requestRead() {
         int myNumber = next;
         next++;
-        while(myNumber != current) {
+        while (myNumber != current) {
             try {
                 wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
+        current++;
         while(writers > 0) {
             try {
                 wait();
@@ -68,6 +69,7 @@ public class FairAccessManager implements AccessManager {
                 e.printStackTrace();
             }
         }
+        current++;
         while(writers > 0 || readers > 0) {
             try {
                 wait();
@@ -76,7 +78,6 @@ public class FairAccessManager implements AccessManager {
             }
         }
         writers++;
-        current++;
         return ballPit;
     }
 }

@@ -8,9 +8,8 @@ public class Main {
 	public static void main(String[] args) {
 		BallPit pit = new UnsafeBallPit(20);
 		BallPit safePit = new SynchronizedBallPit(pit);
-		AccessManager manager = new WriterPreferredAccessManager(pit);
-		Thread writerThread = new Thread(new dk.via.ballpit.accessmanager.BallPitPainter(manager));
-		Thread readerThread = new Thread(new dk.via.ballpit.accessmanager.BallPitPrinter(manager));
+		Thread writerThread = new Thread(new BallPitPainter(safePit));
+		Thread readerThread = new Thread(new BallPitPrinter(safePit));
 		writerThread.start();
 		readerThread.start();
 	}
