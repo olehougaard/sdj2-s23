@@ -15,13 +15,9 @@ public class CurrentTime {
     private CurrentTime() {
     }
 
-    public static CurrentTime getInstance() {
+    public static synchronized CurrentTime getInstance() {
         if (instance == null) {
-            synchronized(CurrentTime.class) {
-                if (instance == null) {
-                    instance = new CurrentTime();
-                }
-            }
+            instance = new CurrentTime();
         }
         return instance;
     }
