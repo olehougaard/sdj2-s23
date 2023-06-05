@@ -1,10 +1,16 @@
 package dk.via.mvvm.model;
 
-import dk.via.mvvm.model.validation.EmailValidator;
+import dk.via.mvvm.model.validation.UserValidator;
 
 public class EmailFactory {
-    public static Email createEmail(String email) {
-        EmailValidator.validateEmail(email);
+    private final UserValidator validator;
+
+    public EmailFactory(UserValidator validator) {
+        this.validator = validator;
+    }
+
+    public Email createEmail(String email) {
+        validator.validateEmail(email);
         String[] parts = email.split("@");
         return new Email(parts[0], parts[1]);
     }

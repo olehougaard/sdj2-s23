@@ -1,22 +1,25 @@
 package dk.via.mvvm.model;
 
-import dk.via.mvvm.model.validation.PasswordValidator;
-import dk.via.mvvm.model.validation.UsernameValidator;
+import dk.via.mvvm.model.validation.UserValidator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserModelManager implements UserModel {
     private final List<User> users;
+    private final UserValidator validator;
+    private final EmailFactory emailFactory;
 
-    public UserModelManager() {
+    public UserModelManager(UserValidator validator, EmailFactory emailFactory) {
+        this.validator = validator;
+        this.emailFactory = emailFactory;
         this.users = new ArrayList<>();
     }
 
     public void addUser(String username, String password, String emailString) {
-        UsernameValidator.validateUsername(username);
-        PasswordValidator.validatePassword(password);
-        Email email = EmailFactory.createEmail(emailString);
+        validator.validateUsername(username);
+        validator.validatePassword(password);
+        Email email = emailFactory.createEmail(emailString);
         if (getUser(username) != null) {
             throw new IllegalStateException("User already exists.");
         }
